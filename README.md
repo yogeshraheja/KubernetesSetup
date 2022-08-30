@@ -78,3 +78,5 @@ systemctl start kubelet
 ststemctl status kubelet
 
 Note: The kubelet will not start unless and until we complete the bootstrapping of our cluster
+
+rpm -qa | grep -i kube*
