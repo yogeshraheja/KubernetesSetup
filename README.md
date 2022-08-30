@@ -1,5 +1,7 @@
 # KubernetesSetup
 
+
+
 # Pre-reqs for Master and Worker (we are using centos 7.6)
 
 -> uname -a
@@ -55,3 +57,24 @@ systemctl status crio
 
 crio --version
 
+# Installation of kubeadm, kubectl and kubelet
+
+cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+
+yum repolist
+
+yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+
+systemctl enable kubelet
+systemctl start kubelet
+ststemctl status kubelet
+
+Note: The kubelet will not start unless and until we complete the bootstrapping of our cluster
