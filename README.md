@@ -34,11 +34,11 @@ sudo sysctl --system
 
 # Installing CRI-O as a runtime
 
-export VERSION=1.24
-export OS=CentOS_7
+--> export VERSION=1.24
+--> export OS=CentOS_7
 
-echo $VERSION
-echo $OS
+--> echo $VERSION
+--> echo $OS
 
 curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/devel:kubic:libcontainers:stable.repo
 
