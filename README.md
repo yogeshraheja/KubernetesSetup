@@ -94,8 +94,22 @@ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 systemctl enable kubelet
 systemctl start kubelet
-ststemctl status kubelet
+systemctl status kubelet
 
 Note: The kubelet will not start unless and until we complete the bootstrapping of our cluster
 
 rpm -qa | grep -i kube*
+
+# Initializing K8S Cluster
+
+kubeadm init
+
+# Seeting up Calico
+# Details about CNI https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
+
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.1/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
+
+kubectl get nodes
+
+# Add the worker to the master node by running Join command
